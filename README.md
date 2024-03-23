@@ -4,11 +4,11 @@
 Node.js, MongoDB
 
 express  
-express-session
+express-session  
 express-handlebars  
-express-flash
-mongoose
-socket.io
+express-flash  
+mongoose  
+socket.io  
 body-parser  
 dotenv
 
