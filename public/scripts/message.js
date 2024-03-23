@@ -21,34 +21,54 @@ function scrollToBottom() {
   chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
+/*
 socket.on("chat message", (data) => {
+  const otherUser = `<img src="assets/people.png" width="20" height="20"><strong> ${data.user}</strong><br>`;
+  const sessionUser = `<strong> ${data.user}</strong><img src="assets/people.png" width="20" height="20"><br>`;
   const item = document.createElement("div");
-  item.innerHTML = `${data.message}`;
-  item.classList.add("chat-bubble-self", "row");
+  if (data.user === userName) {
+    item.innerHTML = `${sessionUser}${element.message}`;
+    item.classList.add("chat-bubble-self");
+  } else {
+    item.innerHTML = `${otherUser}${data.message}`;
+    item.classList.add("chat-bubble");
+  }
+  messages.appendChild(item);
+  window.scrollTo(0, document.body.scrollHeight);
+  scrollToBottom();
+});
+*/
+
+socket.on("chat message", (data) => {
+  const sessionUser = `<strong> ${data.user}</strong>&nbsp;<img src="assets/people.png" width="20" height="20"><br>`;
+  const otherUser = `<img src="assets/people.png" width="20" height="20"><strong> ${data.user}</strong><br>`;
+  const item = document.createElement("div");
+  if (data.user === userName) {
+    item.innerHTML = `${sessionUser}${data.message}`;
+    item.classList.add("chat-bubble-self");
+  } else {
+    item.innerHTML = `${otherUser}${data.message}`;
+    item.classList.add("chat-bubble");
+  }
   messages.appendChild(item);
   window.scrollTo(0, document.body.scrollHeight);
   scrollToBottom();
 });
 
+
 socket.on("old_messages", (msg) => {
   msg.forEach((element) => {
-    const user = `<strong style="align-items: center; display: flex;"><img src="assets/people.png" width="20" height="20" />&nbsp;${element.user}</strong>`;
+    const otherUser = `<img src="assets/people.png" width="20" height="20"><strong> ${element.user}</strong><br>`;
+    const sessionUser = `<strong> ${element.user}</strong>&nbsp;<img src="assets/people.png" width="20" height="20"><br>`;
     const item = document.createElement("div");
 
-    if (userName === element.user) {
-      item.innerHTML = `${element.message}`;
-      item.classList.add("chat-bubble-self", "row");
+    if (element.user === userName) {
+      item.innerHTML = `${sessionUser}${element.message}`;
+      item.classList.add("chat-bubble-self");
     } else {
-      if (lastUsername !== element.user) {
-        item.innerHTML = `${user}${element.message}`;
-        item.classList.add("chat-bubble", "row");
-        lastUsername = element.user;
-      } else {
-        item.innerHTML = `${element.message}`;
-        item.classList.add("chat-bubble", "row");
-      }
+      item.innerHTML = `${otherUser}${element.message}`;
+      item.classList.add("chat-bubble");
     }
-
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
     scrollToBottom();
