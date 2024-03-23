@@ -1,7 +1,19 @@
-# Real Time Chat App
+# Simple Web Chat Application
 
-The following resources were used in this project,
+### The following tools were used in the construction of this project.
+Node.js, MongoDB
 
-### ChatApp https://github.com/berkekurnaz/Hoslaf-Realtime-Chat-App
-### Authentication https://www.youtube.com/watch?v=j9s7iIz-uHw
+express  
+express-session
+express-handlebars  
+express-flash
+mongoose
+socket.io
+body-parser  
+dotenv
 
+### Update the database variable.
+Replace the `MONGODB_CONNECTION_STRING` variable in the `.env` file with your mongodb connection.
+
+# How to use?
+Install its libraries by using `npm install` command and then `npm start` to run the server.

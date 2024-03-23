@@ -1,60 +1,21 @@
-<title>Sohbet</title>
+<title>Web Chat</title>
 
-<style>
-    body {
-        background-color: rgb(240, 240, 240);
-    }
-</style>
-
-{{#if user}}
-<div class="container my-5">
-
-    <div id="areaJoinRoom">
-        <h1 class="beyazSiyahGolge">Katılmak İstediğin Odayı Giriniz</h1>
-        <br>
-        <input class="form-control" type="hidden" id="txtUsername" name="txtUsername" value="{{user.username}}"
-            disabled="disabled">
-        <input class="form-control" id="txtRoomId" name="txtRoomId">
-        <br>
-        <button type="submit" class="odalar" onclick="joinRoom()">Sohbete Katıl</button>
-
+{{#if username}}
+<div class="chat-page mt-3">
+    <div class="chat-container" id="messages"></div>   
+     
+    <div class="container mt-3">
+        <form id="form">
+        <input id="message" autocomplete="off" placeholder="&nbsp;Write your message" class="message-area">
+        </form>
     </div>
-
-    <div id="areaRoomScreen" style="display: none;">
-        <div class="container mb-3">
-            <div class="row align-items-center">
-                <div class="col-4">
-                    <b>
-                        <p class="beyazSiyahGolge">Odada Bulunan Kullanıcı Sayısı: <span id="txtRoomUserCount"></span>
-                        </p>
-                    </b>
-                </div>
-                <div class="col-8">
-                    <h1 class="beyazSiyahGolge center" id="txtWelcomeRoom"></h1>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row pb-3">
-            <div class="container">
-                <textarea class="chatForm" name="txtMessage" id="txtMessage" rows="3" class="form-control"></textarea>
-                <button id="messageBtn" class="btn btn-info sendButton" onclick="sendMessage()">Send Message</button>
-            </div>
-        </div>
+            
+    {{else}}
+    <div class="container mt-5">
+        <h1>Please login!</h1>
     </div>
-    <div class="scrollHide" style="height: 225px;">
-        <div id="messageList"></div>
-    </div>
+    {{/if}}
 </div>
-
-
 <script src="/socket.io/socket.io.js"></script>
-<script src="client.js"></script>
-
-{{else}}
-<div class="container">
-    <h2 class="beyazSiyahGolge">Sohbete katılmak için oturum açın.</h2>
-</div>
-{{/if}}
-</div>
+<script src="/scripts/message.js"></script>
+<script>const userName = "{{ username }}";</script>

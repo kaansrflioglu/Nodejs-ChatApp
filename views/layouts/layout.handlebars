@@ -1,66 +1,74 @@
-<!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" href="https://shardaassociates.in/wp-content/uploads/2021/11/Computer-training-centre.png"
-    type="image/x-icon" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="icon" type="image/x-icon" href="assets/icon.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- Navbar Start -->
-  <header class="header">
-    <nav class="nav container ">
-      <div class="nav__data">
-        <a href="/" class="nav__logo font-24">
-          <i class="ri-code-s-slash-line"></i>Ana Sayfa
-        </a>
-
-        <div class="nav__toggle" id="nav-toggle">
-          <i class="ri-menu-line nav__toggle-menu"></i>
-          <i class="ri-close-line nav__toggle-close"></i>
+  <header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+        <img src="assets/icon.png" alt="Logo" width="48" height="48" class="m-1" />
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse mx-3" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <div class="nav-item-content">
+                  <img src="assets/home.png" alt="Home" width="32" height="32" />
+                  <span class="">Home</span>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/chat">
+                <div class="nav-item-content">
+                  <img src="assets/chat.png" alt="Chat" width="32" height="32" />
+                  <span class="">Chat</span>
+                </div>
+              </a>
+            </li>
+            {{#if username}}
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">
+                <div class="nav-item-content">
+                  <img src="assets/logout.png" alt="Logout" width="32" height="32" />
+                  <span class="">Logout</span>
+                </div>
+              </a>
+            </li>
+            {{else}}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">
+                <div class="nav-item-content">
+                  <img src="assets/login.png" alt="Login" width="32" height="32" />
+                  <span class="">Login</span>
+                </div>
+              </a>
+            </li>
+            {{/if}}
+          </ul>
         </div>
       </div>
-
-      <div class="nav__menu" id="nav-menu">
-        <ul class="nav__list">
-          {{#if user}}
-          <li>
-            <a href="/logout" class="nav__link">Çıkış Yap</a>
-          </li>
-          {{else}}
-
-          <li>
-            <a href="/login" class="nav__link">Giriş Yap</a>
-          </li>
-
-          {{/if}}
-      </div>
-      </li>
-      </ul>
+    </nav>
   </header>
-  <!-- Navbar End -->
-
-
-  {{> _flash}}
-
 
   {{{body}}}
 
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
-  <script src="navbar.js"></script>
-  <script src="client.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
   <script src="/socket.io/socket.io.js"></script>
 </body>
 
